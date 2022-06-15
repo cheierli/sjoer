@@ -42,17 +42,18 @@
 * Clone the project in a directory using `git clone https://github.com/Imable/sjoer.git`
 * Go to https://www.barentswatch.no/minside/
   * Create an account
-  * Create a client below "Mine klienter"
-  * Create a file in `Assets/Resources/Config/` named `barentswatch_conf.json` with the following content, where you replace `...` with the credentials provided by Barentswatch
+  * Create a BW-API client below "Mine klienter"
+  * Create a file in `Assets/Resources/Config/` named `barentswatch_conf.json` with the following content, where you replace `...` with the information from Barentswatch, using the urlencoded client ID
 ```
 {
-    "token_url": "...",
-    "ais_url": "...",
+    "token_url": "https://id.barentswatch.no/connect/token", 
+    "ais_url": "https://www.barentswatch.no/bwapi/v2/geodata/ais/openpositions?Xmin={0}&Xmax={1}&Ymin={2}&Ymax={3}",
     "auth_format": "client_id={0}&scope=api&client_secret={1}&grant_type=client_credentials",
     "client_id": "...",
     "client_secret": "..."
 }
 ```
+* Add `barentswatch_conf.json` to the Asset Manager script in Unity at `Config > Pairs > barentswatch`
 * Open the project in Unity
 * Go to `File > Build Settings`
 * Make sure the settings match the ones below
@@ -77,11 +78,11 @@ _The remaining checkboxes should be deselected when creating a release build_
 * In Visual Studio, switch `Debug` to `Release`, `ARM` to `ARM64` and `Remote Device` to `Device` (by clicking the small arrow on the right side of `ARM`)
 * Then click the `Debug` tab on top of Visual Studio and select `Start without debugging`
 
-_The project is now being build and compiled for HoloLens. This will take around 5-10 minutes, depending on your system. Leave the HoloLens plugged into your PC until it makes a sound and the project is opened automatically_
+_The project is now being built and compiled for HoloLens. This will take around 5-10 minutes, depending on your system. Leave the HoloLens plugged into your PC until it makes a sound and the project is opened automatically_
 
 ### Connect to GPS on your phone
 * Download the NetGPS Android app (https://play.google.com/store/apps/details?id=com.meowsbox.netgps&hl=en&gl=US)
-*  Disconnect your phone from WiFi and create a hotspot with your phone and connect the HoloLens to it
+* Disconnect your phone from WiFi and create a hotspot with your phone and connect the HoloLens to it
 
   _Note that this will use mobile data (but it should not be a crazy amount)_
 * In NetGPS, open the second tab and create and enable a server with _type: TCP_, _port: 6000_
