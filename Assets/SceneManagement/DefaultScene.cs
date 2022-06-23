@@ -87,7 +87,7 @@ namespace Assets.SceneManagement
                             Math.Pow(Math.Sin((Lon - dto.Longitude) * Math.PI / 360), 2);
                         vesselDistance = 12742000 * Math.Atan2(Math.Sqrt(haversine), Math.Sqrt(1 - haversine));
 
-                        Debug.Log($"Ship number {i}'s name and distance are {dto.Key} and {vesselDistance} meters");
+                        //Debug.Log($"Ship number {i}'s name and distance are {dto.Key} and {vesselDistance} meters");
 
                         if (vesselDistance < closestVesselDistance)
                         {
@@ -98,8 +98,8 @@ namespace Assets.SceneManagement
 
                     ((AISDTO)allVessels[closestVesselID].GetDTO).Target = true;
 
-                    Debug.Log($"The closest Vessel is {allVessels[closestVesselID].Key}. It is {closestVesselDistance} meters away " +
-                        $"and has state \"{allVessels[closestVesselID].CurrentState}\"");
+                    //Debug.Log($"The closest Vessel is {allVessels[closestVesselID].Key}. It is {closestVesselDistance} meters away " +
+                    //    $"and has state \"{allVessels[closestVesselID].CurrentState}\"");
                 }
                 else
                 {
