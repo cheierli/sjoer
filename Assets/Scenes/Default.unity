@@ -186,7 +186,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - keyword: Point on the Radar
+  - keyword: Point on Radar
     response:
       m_PersistentCalls:
         m_Calls:

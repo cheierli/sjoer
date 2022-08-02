@@ -170,22 +170,19 @@ namespace Assets.InfoItems
             //    };
             //}
 
-            if (IsRadarMarkerShowing)
-            {
-                if (((AISDTOs)dto).vessels.Length > 1)
-                    ((AISDTOs)dto).vessels[1] = new AISDTO
-                    {
-                        Valid = true,
-                        SOG = 0,
-                        COG = 0,
-                        Draught = 0,
-                        Name = "Point on Radar",
-                        Key = "Point on Radar",
-                        Target = true,
-                        Latitude = 60.385747,
-                        Longitude = 5.330579
-                    };
-            }
+            //if (((AISDTOs)dto).vessels.Length > 1)
+            //    ((AISDTOs)dto).vessels[1] = new AISDTO
+            //    {
+            //        Valid = true,
+            //        SOG = 0,
+            //        COG = 0,
+            //        Draught = 0,
+            //        Name = "Point on Radar",
+            //        Key = "Point on Radar",
+            //        Target = true,
+            //        Latitude = 60.385747,
+            //        Longitude = 5.330579
+            //    };
 
             foreach (InfoItem infoItem in AISInfoItem.Generate(dto, dataType, displayArea))
             {
@@ -199,10 +196,7 @@ namespace Assets.InfoItems
                     AddNewInfoItem(infoItem);
                 }
             }
-        }
-
-        public bool IsRadarMarkerShowing = false;
-
+        }        
     }
     
     class InjectedInfoCategory : InfoCategory
