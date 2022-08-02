@@ -186,6 +186,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - keyword: Point on the Radar
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1424894766}
+          m_TargetAssemblyTypeName: Assets.SceneManagement.DefaultScene, Assembly-CSharp
+          m_MethodName: AddRadarMarker
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   persistentKeywords: 0
   speechConfirmationTooltipPrefab: {fileID: 8046114618238072051, guid: 271778f6c957b524981067a81d238394, type: 3}
 --- !u!4 &146097132
@@ -280,7 +296,7 @@ MonoBehaviour:
     - _key: generic
       _value: {fileID: 4900000, guid: 9187f0ae0ba98754fa02fdb4f590e814, type: 3}
     - _key: barentswatch
-      _value: {fileID: 4900000, guid: 0ff0b61fa17364b459c341f4405120fb, type: 3}
+      _value: {fileID: 4900000, guid: 2abe38679ef02d746941b4af63f87ccf, type: 3}
   objects:
     _pairs:
     - _key: AISPin
@@ -686,6 +702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 182394183}
+  IsClosestVesselShowing: 0
+  IsRadarMarkerShowing: 0
 --- !u!4 &1424894767
 Transform:
   m_ObjectHideFlags: 0

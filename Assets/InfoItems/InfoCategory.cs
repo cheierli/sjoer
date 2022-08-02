@@ -98,7 +98,8 @@ namespace Assets.InfoItems
             if (dataRetriever.isConnected()) dto = await this.dataRetriever.fetch();
 
             // If we could connect and data is valid, store that data
-            if (dto != null && dto.Valid) {
+            if (dto != null && dto.Valid) 
+            {
                 lastDTO = dto;
                 // Process new data is that was available, otherwise process old data if that is available
                 HandleNewInfoItems(dto);
@@ -169,6 +170,23 @@ namespace Assets.InfoItems
             //    };
             //}
 
+            if (IsRadarMarkerShowing)
+            {
+                if (((AISDTOs)dto).vessels.Length > 1)
+                    ((AISDTOs)dto).vessels[1] = new AISDTO
+                    {
+                        Valid = true,
+                        SOG = 0,
+                        COG = 0,
+                        Draught = 0,
+                        Name = "Point on Radar",
+                        Key = "Point on Radar",
+                        Target = true,
+                        Latitude = 60.385747,
+                        Longitude = 5.330579
+                    };
+            }
+
             foreach (InfoItem infoItem in AISInfoItem.Generate(dto, dataType, displayArea))
             {
                 if (IsInInfoItems(infoItem))
@@ -182,8 +200,11 @@ namespace Assets.InfoItems
                 }
             }
         }
-    }
 
+        public bool IsRadarMarkerShowing = false;
+
+    }
+    
     class InjectedInfoCategory : InfoCategory
     {
         Func<List<InfoItem>> InfoItemInjector;

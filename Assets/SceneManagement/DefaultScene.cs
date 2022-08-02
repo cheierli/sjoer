@@ -23,6 +23,7 @@ namespace Assets.SceneManagement
         private DateTime lastUpdate;
 
         public bool IsClosestVesselShowing = false;
+        public bool IsRadarMarkerShowing = false;
 
         void Start()
         {
@@ -161,6 +162,12 @@ namespace Assets.SceneManagement
             //    Debug.Log("There is no vessel in sight");
             //}
         }
+
+        public void AddRadarMarker()
+        {
+            IsRadarMarkerShowing = !IsRadarMarkerShowing;
+        }
+
 
         void OnApplicationQuit()
         {
