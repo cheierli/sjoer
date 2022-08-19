@@ -23,6 +23,7 @@ namespace Assets.SceneManagement
         private DateTime lastUpdate;
 
         public bool IsClosestVesselShowing = false;
+        public bool IsRadarMarkerShowing = false;
 
         void Start()
         {
@@ -106,6 +107,28 @@ namespace Assets.SceneManagement
                     Debug.Log("There is no vessel in sight");
                 }
             }
+
+            if (IsRadarMarkerShowing)
+            {
+                List<InfoItem> allVessels = allInfoItems[infoCategories[0].Name];
+
+                if (allVessels.Count > 0)
+                {
+                    AISDTO dto = (AISDTO)allVessels[1].GetDTO;
+                    dto.Valid = true;
+                    dto.SOG = 0;
+                    dto.COG = 0;
+                    dto.Draught = 0;
+                    dto.Name = "Point on Radar";
+                    dto.Key = "Point on Radar";
+                    dto.Target = true;
+                    allVessels[1].InjectNewDTO(dto);
+                }
+                else
+                {
+                    Debug.Log("Sadly, you can't do that right now.");
+                }
+            }
         }
 
         void UpdateInfoCategoriesInOrder()
@@ -161,6 +184,12 @@ namespace Assets.SceneManagement
             //    Debug.Log("There is no vessel in sight");
             //}
         }
+
+        public void AddRadarMarker()
+        {
+            IsRadarMarkerShowing = !IsRadarMarkerShowing;
+        }
+
 
         void OnApplicationQuit()
         {

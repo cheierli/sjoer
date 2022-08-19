@@ -193,7 +193,79 @@ namespace Assets.DataManagement
                 tcpClient.Close();
             } catch (SocketException e)
             {
-                Debug.Log("Socket Exception: " + e);
+                try
+                {
+                    tcpClient = new TcpClient(Config.Instance.conf.PhoneGPS["IP2"], int.Parse(Config.Instance.conf.PhoneGPS["port"]));
+
+                    Byte[] bytes = new Byte[1024];
+                    while (running)
+                    {
+                        // Get a stream object for reading 				
+                        using (NetworkStream stream = tcpClient.GetStream())
+                        {
+                            int length;
+                            // Read incomming stream into byte arrary. 					
+                            while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                            {
+                                var incomingData = new byte[length];
+                                Array.Copy(bytes, 0, incomingData, 0, length);
+                                // Convert byte array to string message. 						
+                                string gpsString = Encoding.ASCII.GetString(incomingData);
+                                // Only store GPRMC strings
+                                if (gpsString.Length > 5 && gpsString.Substring(0, 5).Contains("GPRMC"))
+                                {
+                                    lastReading = gpsString.Substring(0, gpsString.IndexOf(Environment.NewLine));
+                                }
+
+                                if (!running)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    tcpClient.Close();
+                } catch (SocketException ee)
+                {
+                    try
+                    {
+                        tcpClient = new TcpClient(Config.Instance.conf.PhoneGPS["IP3"], int.Parse(Config.Instance.conf.PhoneGPS["port"]));
+
+                        Byte[] bytes = new Byte[1024];
+                        while (running)
+                        {
+                            // Get a stream object for reading 				
+                            using (NetworkStream stream = tcpClient.GetStream())
+                            {
+                                int length;
+                                // Read incomming stream into byte arrary. 					
+                                while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                                {
+                                    var incomingData = new byte[length];
+                                    Array.Copy(bytes, 0, incomingData, 0, length);
+                                    // Convert byte array to string message. 						
+                                    string gpsString = Encoding.ASCII.GetString(incomingData);
+                                    // Only store GPRMC strings
+                                    if (gpsString.Length > 5 && gpsString.Substring(0, 5).Contains("GPRMC"))
+                                    {
+                                        lastReading = gpsString.Substring(0, gpsString.IndexOf(Environment.NewLine));
+                                    }
+
+                                    if (!running)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        tcpClient.Close();
+                    } catch (SocketException eee)
+                    {
+                        Debug.Log("Socket Exceptions: " + e + ", " + ee + ", " + eee);
+                    }
+                }
             }
         }
 

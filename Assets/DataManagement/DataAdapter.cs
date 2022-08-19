@@ -81,7 +81,17 @@ namespace Assets.DataManagement
                     continue;
 
                 // By default, no target. When connecting to ECDIS this could become useful
-                vesselDTO.Target      = false;
+
+                //if (vesselDTO.Key == ((AISDTO)getClosestVessel()).Key)
+                //{
+                //    vesselDTO.Target = true;
+                //}
+                //else
+                //{
+                //    vesselDTO.Target = false;
+                //}
+                
+                vesselDTO.Target = false;
 
                 vesselDTO.Valid       = true;
                 vesselDTO.TimeStamp   = getDateTime(vessel, "timeStamp");
