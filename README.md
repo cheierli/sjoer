@@ -88,6 +88,7 @@ _The project is now being built and compiled for HoloLens. This will take around
 * In NetGPS, open the second tab and create and enable a server with _type: TCP_, _port: 6000_
 * Then click the arrow on top to show your IP address
 * Insert the IP address from the app at `wlan0` into the config file in the Unity project at `Assets/Resources/Config/conf.json` (at the bottom of the file)
+* Three IP addresses can be specified and are tried in descending order for when the app is used with different phones providing GPS or within different networks
 * If we now run the application on the HoloLens, it should connect to the phone
 
 ## Troubleshooting
