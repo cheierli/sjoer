@@ -77,8 +77,8 @@ namespace Assets.SceneManagement
                     double haversine;
                     double closestVesselDistance = 1000000;
                     double vesselDistance;
-                    double Lat = 60.397908; double Lon = 5.317065;
-                    //double Lat = Player.Instance.GetLatLon.x; double Lon = Player.Instance.GetLatLon.y;
+                    //double Lat = 60.397908; double Lon = 5.317065; // for use with hardcoded position without GPS connection
+                    double Lat = Player.Instance.GetLatLon.x; double Lon = Player.Instance.GetLatLon.y; // for use with GPS connection
 
                     for (int i = 0; i < allVessels.Count; i++)
                     {
